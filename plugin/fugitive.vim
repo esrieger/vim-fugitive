@@ -483,7 +483,7 @@ function! FugitiveDetect(...) abort
 endfunction
 
 function! FugitiveGitPath(path) abort
-  return s:Slash(a:path)
+  return substitute(a:path, '^/mnt/\(\a\)/', '\1:/', '')
 endfunction
 
 if exists('+shellslash')
@@ -516,7 +516,7 @@ else
     endfunction
   else
     function! FugitiveVimPath(path) abort
-      return a:path
+      return substitute(a:path, '^\(\a\):/', '/mnt/\1/', '')
     endfunction
   endif
 
